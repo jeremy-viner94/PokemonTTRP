@@ -13,18 +13,19 @@
 <body>
 <div id="wrapper">
 	<header>
-		<div id="title">Titel im Header</div>
+		<div id="title">Welcome to the Pokemon TTRPG</div>
 		<ul>
 			<li class="nav-home"><a href="/">Home</a></li>
-			<li class="nav-kontakt"><a href="/kontakt">Kontakt</a></li>
+			<li class="nav-kontakt"><a href="/login">Login</a></li>
 		</ul>
 	</header>
 	
 	<div id="content">
 		
-<? self::view($subView, $data, false) ?>
+<?php self::view($subView, $data, false) ?>
 		
 	</div>
+<?php self::view('trainerbar', $data, false) ?>
 	
 	<footer>&copy; Footer</footer>
 </div>
