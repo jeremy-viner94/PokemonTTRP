@@ -40,7 +40,7 @@ class Core {
 		$base_route = Request::route(0);
 		
 		if ($base_route == false)
-			$base_route = "home";
+			$base_route = "login";
 
 		if ($base_route && preg_match("/^[\w\-]+$/", $base_route) && file_exists("{$dir}/{$base_route}.php"))
 			$file_name = $base_route;
