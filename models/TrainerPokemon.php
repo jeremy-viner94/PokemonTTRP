@@ -20,6 +20,9 @@ class TrainerPokemon extends Pokemon
     public function __construct($array)
     {
 
+    	if(is_null($array)) {
+    		return;
+    	}
         $this->idCapturedPokemon = $array['idCapturedPokemon'];
         $this->TrainerId = $array['TrainerId'];
         $this->PokemonId = $array['PokemonId'];

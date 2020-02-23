@@ -9,6 +9,9 @@ class Move extends Model
 
     public function __construct($array)
     {
+    	if(is_null($array)) {
+    		return;
+    	}
         $this->MoveId = $array['MoveId'];
         $this->Name = $array['Name'];
         $this->MovePower = $array['MovePower'];
