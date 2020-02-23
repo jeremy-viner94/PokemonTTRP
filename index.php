@@ -1,4 +1,5 @@
 <?php
+session_start();
 /**
  * Copyright (c) 2016 B. L.
  *
@@ -20,7 +21,6 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  */
-
 
 require("config/config.php");
 require("models/Core.php");

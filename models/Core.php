@@ -40,7 +40,7 @@ class Core {
 		$base_route = Request::route(0);
 		
 		if ($base_route == false)
-			$base_route = "login";
+			$base_route = "/";
 
 		if ($base_route && preg_match("/^[\w\-]+$/", $base_route) && file_exists("{$dir}/{$base_route}.php"))
 			$file_name = $base_route;
@@ -123,7 +123,10 @@ class Core {
 	}
 	
 	private static function login() {
-		global $config;
+
+		error_log("TESTING",4);
+		$trainerOb = new Trainer();
+		//global $config;
 		$baseRoute = Request::route(0);
 		session_name("sid");
 		$login_msg_id = false;
@@ -139,17 +142,25 @@ class Core {
 		}
 
 		// try login
-		if (isset($_POST["login_name"], $_POST["login_password"], $config["login"]["users"]) && is_array($config["login"]["users"])) {
-			foreach ($config["login"]["users"] as $user) {
-				if (array_key_exists("name", $user) && array_key_exists("password", $user) && $user["name"] == $_POST["login_name"] && $user["password"] == sha1($_POST["login_password"])) {
-					session_start();
-					$_SESSION["timeout"] = time();
-					$_SESSION["user_name"] = $user["name"];
-					return true;
-				}
+		if (isset($_POST["login_name"], $_POST["login_password"])) {
+
+			$trainer = $trainerOb->login(array('Name' =>$_POST["login_name"], 'Password' =>md5($_POST["login_password"])));
+			if(!empty($trainer)) {
+			 		$_SESSION["timeout"] = time();
+			 		$_SESSION["Name"] = $trainer->getName();
+			 		$_SESSION["TrainerId"] = $trainer->getId();
+			}else {
+				return "incorrect";
 			}
+			// foreach ($config["login"]["users"] as $user) {
+			// 	if (array_key_exists("name", $user) && array_key_exists("password", $user) && $user["name"] == $_POST["login_name"] && $user["password"] == sha1($_POST["login_password"])) {
+			// 		session_start();
+			// 		$_SESSION["timeout"] = time();
+			// 		$_SESSION["user_name"] = $user["name"];
+			// 		return true;
+			// 	}
+			// }
 			
-			return "incorrect";
 		}
 		
 		// otherwise present login and login if user name and password is passed
@@ -159,10 +170,10 @@ class Core {
 	
 	
 	private static function logout() {
-		if (session_status() == PHP_SESSION_ACTIVE)
-			session_destroy();
-		setcookie('sid', null, -1, '/');
-		unset($_COOKIE["sid"]);
+		// if (session_status() == PHP_SESSION_ACTIVE)
+		// 	session_destroy();
+		// setcookie('sid', null, -1, '/');
+		// unset($_COOKIE["sid"]);
 	}
 	
 	

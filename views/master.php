@@ -21,7 +21,12 @@
 			<li class="nav-kontakt"><a href="/login">Login</a></li>
 		</ul>
 	</header>
-	
+	<p>
+Hello visitor, you have seen this page <?php echo $_SESSION['count']; ?> times.
+</p>
+<p>
+The session ID is <?php echo session_id(); ?>.
+</p>
 	<div id="content">
 		
 <?php self::view($subView, $data, false) ?>

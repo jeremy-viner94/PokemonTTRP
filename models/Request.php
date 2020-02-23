@@ -72,6 +72,7 @@ class Request
 	 */
 	public static function redirect($location)
 	{
+		error_log($location,4);
 		header("Location: {$location}");
 		exit();
 	}
