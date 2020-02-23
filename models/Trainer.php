@@ -7,8 +7,11 @@ class Trainer extends Model
 	var $Password;
 	const DB_NAME = "Trainers";
 
-    public function __construct($array)
+    public function __construct($array = null)
     {
+    	if(is_null($array)) {
+    		return;
+    	}
         $this->Id = $array['Id'];
         $this->Name = $array['Name'];
         $this->Password = $array['Password'];
