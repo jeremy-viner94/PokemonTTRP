@@ -7,8 +7,12 @@ class Pokemon extends Model
 	const DB_NAME = "Pokemon";
 
 
-    public function __construct($array)
+    public function __construct($array = null)
     {
+    	if(is_null($array)) {
+    		return;
+    	}
+    	
         $this->Id = $array['Id'];
         $this->Name = $array['Name'];
         $this->Type1 = $array['Type1'];

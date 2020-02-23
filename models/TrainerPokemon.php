@@ -17,7 +17,7 @@ class TrainerPokemon extends Pokemon
 	var $Active;
 
 
-    public function __construct($array)
+    public function __construct($array = null)
     {
 
     	if(is_null($array)) {

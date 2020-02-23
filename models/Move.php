@@ -7,7 +7,7 @@ class Move extends Model
 	const DB_NAME = "MoveTable";
 
 
-    public function __construct($array)
+    public function __construct($array = null)
     {
     	if(is_null($array)) {
     		return;
